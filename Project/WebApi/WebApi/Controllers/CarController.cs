@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -19,14 +21,18 @@ namespace WebApi.Controllers
             }
         }
 
-        public IEnumerable<Models.Car> GetAllCars()
+        public IQueryable<Models.Car> GetAllCars()
         {
             return DBContext.Cars;
         }
 
-        public Models.Car GetCar(int id)
+        [ResponseType(typeof(Car))]
+        public async Task<IHttpActionResult> GetCar(int id)
         {
-            return DBContext.Cars.FirstOrDefault(x => x.Id == id);
+            var result = await DBContext.Cars.FirstOrDefaultAsync(x => x.Id == id);
+            if (result != null)
+                return Ok(result);
+            return NotFound();
         }
     }
 }

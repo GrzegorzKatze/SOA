@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -22,14 +21,18 @@ namespace WebApi.Controllers
             }
         }
 
-        public IEnumerable<Models.Order> GetAllOrders()
+        public IQueryable<Models.Order> GetAllOrders()
         {
             return DBContext.Orders;
         }
 
-        public Models.Order GetOrders(int id)
+        [ResponseType(typeof(Order))]
+        public async Task<IHttpActionResult> GetOrders(int id)
         {
-            return DBContext.Orders.FirstOrDefault(x => x.Id == id);
+            var result = await DBContext.Orders.FirstOrDefaultAsync(x => x.Id == id);
+            if (result != null)
+                return Ok(result);
+            return NotFound();
         }
     }
 }
