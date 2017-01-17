@@ -1,0 +1,7 @@
+C:\Users\TPAdmin\Desktop\Projekty student\Project\WebApi\WebApiTest\bin\Debug\WebApiTest.exe.config
+C:\Users\TPAdmin\Desktop\Projekty student\Project\WebApi\WebApiTest\bin\Debug\WebApiTest.exe
+C:\Users\TPAdmin\Desktop\Projekty student\Project\WebApi\WebApiTest\bin\Debug\WebApiTest.pdb
+C:\Users\TPAdmin\Desktop\Projekty student\Project\WebApi\WebApiTest\bin\Debug\RestSharp.dll
+C:\Users\TPAdmin\Desktop\Projekty student\Project\WebApi\WebApiTest\bin\Debug\RestSharp.xml
+C:\Users\TPAdmin\Desktop\Projekty student\Project\WebApi\WebApiTest\obj\Debug\WebApiTest.exe
+C:\Users\TPAdmin\Desktop\Projekty student\Project\WebApi\WebApiTest\obj\Debug\WebApiTest.pdb

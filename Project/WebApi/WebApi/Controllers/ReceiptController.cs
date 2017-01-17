@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -19,23 +21,18 @@ namespace WebApi.Controllers
             }
         }
 
-        public IEnumerable<Models.Receipt> GetAllReceipts()
+        public IQueryable<Models.Receipt> GetAllReceipts()
         {
             return DBContext.Receipts;
         }
 
-        [HttpGet]
-        [ActionName("GetReceiptById")]
-        public Models.Receipt GetReceipt(int id)
+        [ResponseType(typeof(Receipt))]
+        public async Task<IHttpActionResult> GetReceipt(int id)
         {
-            return DBContext.Receipts.FirstOrDefault(x => x.Id == id);
-        }
-
-        [HttpGet]
-        [ActionName("GetReceiptBySymbol")]
-        public Models.Receipt GetReceipt(string symbol)
-        {
-            return DBContext.Receipts.FirstOrDefault(x => x.Symbol == symbol);
+            var result = await DBContext.Receipts.FirstOrDefaultAsync(x => x.Id == id);
+            if (result != null)
+                return Ok(result);
+            return NotFound();
         }
     }
 }
